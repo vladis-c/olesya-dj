@@ -56,7 +56,8 @@ const Hero = async () => {
           <Button
             href={ctaButton.link}
             key={ctaButton.link + i}
-            icon="headphones">
+            icon="headphones"
+            type="gradient">
             {documentToReactComponents(ctaButton.label)}
           </Button>
         ))
