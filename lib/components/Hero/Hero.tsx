@@ -75,10 +75,12 @@ const Hero = async () => {
         id="hero-background"
       />
       <div className="absolute inset-0 bg-black opacity-50 -z-10" id="dimmer" />
-      <h1 className="text-9xl text-white font-semibold " id="title">
+      <h1 className="text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent" id="title">
         {title}
       </h1>
-      <div id="description">{Description}</div>
+      <div id="description" className="text-white">
+        {Description}
+      </div>
       {Links}
     </div>
   );

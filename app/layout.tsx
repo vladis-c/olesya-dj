@@ -37,11 +37,9 @@ const RootLayout = ({
         <nav
           className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-sm"
           id="navigation">
-          <div className="w-full flex flex-row justify-between items-center px-24 py-4">
-            <div>
-              <h3 className="text-white">Olesya DJ</h3>
-            </div>
-            <ul className="flex gap-[24px] flex-wrap items-center justify-center">
+          <div className="w-full flex flex-row justify-between items-center px-4 md:px-24 py-4">
+            <h3 className="text-white">Olesya DJ</h3>
+            <ul className="hidden md:flex md:gap-4 flex-wrap items-center justify-center">
               {links.map(({path, name}) => (
                 <li key={path}>
                   <Button href={path} type="link">
