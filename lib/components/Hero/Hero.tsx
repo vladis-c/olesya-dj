@@ -4,7 +4,6 @@ import {Entry} from 'contentful';
 import Image from 'next/image';
 import React, {ComponentProps} from 'react';
 import {client} from '@/lib/contentful';
-import data from '../../../contentful-data.json';
 import Button from '../Button';
 import Icons from '../Icons';
 
@@ -36,7 +35,7 @@ type ContentfulMedia = {
 };
 
 const Hero = async () => {
-  // const data = await client.getEntries();
+  const data = await client.getEntries();
   const content = data.items.find(el => el.sys.contentType.sys.id === 'hero');
 
   const description = content?.fields
