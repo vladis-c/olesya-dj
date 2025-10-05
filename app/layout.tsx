@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 
 const links = [
   {path: '#hero', name: 'Hero'},
+  {path: '#sets', name: 'Sets'},
   {path: '#footer', name: 'Footer'},
 ];
 
