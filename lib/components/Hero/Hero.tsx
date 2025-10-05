@@ -4,6 +4,7 @@ import {Entry} from 'contentful';
 import Image from 'next/image';
 import React, {ComponentProps} from 'react';
 import {client} from '@/lib/contentful';
+import data from '../../../contentful-data.json';
 import Button from '../Button';
 import Icons from '../Icons';
 
@@ -35,7 +36,7 @@ type ContentfulMedia = {
 };
 
 const Hero = async () => {
-  const data = await client.getEntries();
+  // const data = await client.getEntries();
   const content = data.items.find(el => el.sys.contentType.sys.id === 'hero');
 
   const description = content?.fields
@@ -97,11 +98,11 @@ const Hero = async () => {
       />
       <div className="absolute inset-0 bg-black opacity-50 -z-10" id="dimmer" />
       <h1
-        className="text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent"
+        className="text-6xl md:text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent"
         id="title">
         {title}
       </h1>
-      <div id="description" className="text-white">
+      <div id="description" className="text-white text-center">
         {Description}
       </div>
       {ctaButtons && ctaButtons.length > 0 ? (
