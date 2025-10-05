@@ -2,16 +2,27 @@ import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {Document} from '@contentful/rich-text-types';
 import {Entry} from 'contentful';
 import Image from 'next/image';
-import React from 'react';
+import React, {ComponentProps} from 'react';
 import {client} from '@/lib/contentful';
-// import data from '../../../contentful-data.json';
 import Button from '../Button';
+import Icons from '../Icons';
 
 type ContentfulHero = {
   title: string;
   description?: Document;
   background?: Entry;
-  ctaButtons?: [{fields: {label: Document; link: string}}];
+  ctaButtons?: [
+    {
+      fields: {
+        label: Document;
+        link: string;
+        enabled: boolean;
+        showOnlyIcon: boolean;
+        icon: (keyof typeof Icons)[];
+        type: ComponentProps<typeof Button>['type'];
+      };
+    },
+  ];
 };
 
 type ContentfulMedia = {
@@ -44,23 +55,33 @@ const Hero = async () => {
   const ctaButtons = (
     content?.fields?.ctaButtons as ContentfulHero['ctaButtons']
   )?.map(el => {
-    const label = el.fields.label as Document;
-    const link = el.fields.link;
+    const disabled = !el.fields?.enabled;
+    const label = el.fields?.label as Document;
+    const link = el.fields?.link;
+    const showOnlyIcon = el.fields?.showOnlyIcon;
+    const icon = el.fields?.icon?.[0];
+    const type = el.fields?.type;
 
-    return {label, link};
+    return {label, link, disabled, showOnlyIcon, icon, type};
   });
 
   const Links =
     ctaButtons && ctaButtons.length > 0
-      ? ctaButtons.map((ctaButton, i) => (
-          <Button
-            href={ctaButton.link}
-            key={ctaButton.link + i}
-            icon="headphones"
-            type="gradient">
-            {documentToReactComponents(ctaButton.label)}
-          </Button>
-        ))
+      ? ctaButtons
+          .slice(1)
+          .map(({link, disabled, label, icon, showOnlyIcon, type}, i) => {
+            return (
+              <Button
+                href={link}
+                key={link + i}
+                icon={icon}
+                type={type}
+                disabled={disabled}
+                showOnlyIcon={showOnlyIcon}>
+                {documentToReactComponents(label)}
+              </Button>
+            );
+          })
       : null;
 
   return (
@@ -75,13 +96,30 @@ const Hero = async () => {
         id="hero-background"
       />
       <div className="absolute inset-0 bg-black opacity-50 -z-10" id="dimmer" />
-      <h1 className="text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent" id="title">
+      <h1
+        className="text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent"
+        id="title">
         {title}
       </h1>
       <div id="description" className="text-white">
         {Description}
       </div>
-      {Links}
+      {ctaButtons && ctaButtons.length > 0 ? (
+        <div className="flex flex-col gap-4">
+          <Button
+            href={ctaButtons[0]?.link}
+            key={ctaButtons[0]?.link}
+            icon={ctaButtons[0]?.icon}
+            type={ctaButtons[0]?.type}
+            disabled={ctaButtons[0]?.disabled}
+            showOnlyIcon={ctaButtons[0]?.showOnlyIcon}>
+            {documentToReactComponents(ctaButtons[0].label)}
+          </Button>
+          <div className="flex flex-row items-center justify-center gap-4">
+            {Links}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
