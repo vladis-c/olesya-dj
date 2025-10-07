@@ -9,7 +9,9 @@ const About = async ({content}: AboutProps) => {
   const genres = ['Progressive house', 'Techno', 'Afro'];
   const places = ['Dubai', 'Movenpick', 'Hotels'];
   return (
-    <div className="relative flex flex-col justify-center items-center h-screen w-screen">
+    <div
+      className="relative flex flex-col justify-center items-center h-screen w-screen"
+      id="about">
       <Image
         alt="about"
         src={`https://images.ctfassets.net/iljug6yydm15/1hX42B7XtdMn1d2rxvP3Xo/17f2c33dbec1dde0b1bc2e4545b870e1/IMG_3458.jpg`}
