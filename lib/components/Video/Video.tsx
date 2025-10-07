@@ -9,7 +9,12 @@ type VideoProps = {
 const Video = async ({src}: VideoProps) => {
   const isMobile = await getDevice();
 
-  const getVideoId = (url: string) => url.match(/[?&]v=([^&]+)/)?.[1];
+  const getVideoId = (url: string) => {
+    const match = url.match(
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
+    );
+    return match?.[1];
+  };
   const videoId = getVideoId(src);
 
   if (!videoId) {
@@ -19,6 +24,7 @@ const Video = async ({src}: VideoProps) => {
   if (isMobile) {
     return (
       <Link
+        id="set_video"
         className="relative w-full aspect-video bg-black rounded-lg overflow-hidden cursor-pointer"
         href={src}>
         <Image
@@ -38,6 +44,7 @@ const Video = async ({src}: VideoProps) => {
 
   return (
     <iframe
+      id="set_video"
       src={
         videoId
           ? `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`

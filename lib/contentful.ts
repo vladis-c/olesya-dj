@@ -33,6 +33,14 @@ export type ContentfulHero = {
   ];
 };
 
+export type ContentfulDjSet = {
+  title: Document;
+  description: Document;
+  /** YYYY-DD-MMTHH:mm+Z */
+  date: string;
+  videoUrl: string;
+};
+
 export type ContentfulMedia = {
   title: string;
   descriptions: string;
