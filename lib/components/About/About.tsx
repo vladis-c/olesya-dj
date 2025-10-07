@@ -21,6 +21,9 @@ const About = async ({content}: AboutProps) => {
 
   const image = background?.fields as ContentfulMedia;
 
+  const genres = content?.fields?.genres;
+  const places = content?.fields?.places;
+
   return (
     <div
       className="relative flex flex-col justify-center items-center w-screen min-h-screen"
@@ -48,36 +51,40 @@ const About = async ({content}: AboutProps) => {
           <div className="pr-4 pl-4 md:pr-24 md:pl-0">{Description}</div>
         </div>
         <div className="flex flex-col md:flex-1 gap-8" id="about_data">
-          <div
-            className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
-            id="about_genres">
-            <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
-              Genres
-            </h2>
-            <ul className="flex flex-wrap gap-2 px-1">
-              {content?.fields?.genres?.map(genre => (
-                <li
-                  key={genre}
-                  className="bg-gradient-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
-                  <p className="text-white font-medium">{genre}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
-            id="about_places">
-            <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
-              Places
-            </h2>
-            <ul className="flex flex-col gap-2 list-disc list-inside px-2">
-              {content?.fields?.places?.map(place => (
-                <li key={place} className="text-white font-medium">
-                  {place}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {genres && genres.length > 0 ? (
+            <div
+              className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
+              id="about_genres">
+              <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
+                Genres
+              </h2>
+              <ul className="flex flex-wrap gap-2 px-1">
+                {genres.map(genre => (
+                  <li
+                    key={genre}
+                    className="bg-gradient-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
+                    <p className="text-white font-medium">{genre}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+          {places && places.length > 0 ? (
+            <div
+              className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
+              id="about_places">
+              <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+                Places
+              </h2>
+              <ul className="flex flex-col gap-2 list-disc list-inside px-2">
+                {places.map(place => (
+                  <li key={place} className="text-white font-medium">
+                    {place}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
