@@ -46,6 +46,13 @@ export type ContentfulDjLife = {
   url: string;
 };
 
+export type ContentfulAbout = {
+  title: Document;
+  description: Document;
+  genres: unknown[];
+  places: unknown[];
+};
+
 export type ContentfulMedia = {
   title: string;
   descriptions: string;

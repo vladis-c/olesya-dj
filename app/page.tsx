@@ -1,7 +1,9 @@
+import About from '@/lib/components/About';
 import Hero from '@/lib/components/Hero';
 import Life from '@/lib/components/Life';
 import Sets from '@/lib/components/Sets';
 import client, {
+  ContentfulAbout,
   ContentfulDjLife,
   ContentfulDjSet,
   ContentfulHero,
@@ -23,12 +25,17 @@ const Home = async () => {
     el => el.sys.contentType.sys.id === 'djLife',
   ) as unknown as {fields: ContentfulDjLife | undefined}[];
 
+  const aboutContent = data.items.find(
+    el => el.sys.contentType.sys.id === 'about',
+  ) as unknown as {fields: ContentfulAbout | undefined} | undefined;
+
   return (
     <div className="font-sans">
       <main>
         <Hero content={heroContent} />
         <Sets content={setsContent} />
         <Life content={lifeContent} />
+        <About content={aboutContent} />
       </main>
     </div>
   );

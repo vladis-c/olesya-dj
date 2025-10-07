@@ -28,7 +28,7 @@ const Life = async ({content}: LifeProps) => {
   return (
     <div
       className="relative flex flex-col justify-start items-center min-h-screen w-screen p-8 gap-8 bg-black"
-      id="sets">
+      id="life">
       <h1 className="text-5xl font-bold mt-16 mb-8 text-white">My DJ Life</h1>
       <div className="flex flex-wrap w-screen justify-center items-center gap-8 lg:px-48">
         {Cards()}
