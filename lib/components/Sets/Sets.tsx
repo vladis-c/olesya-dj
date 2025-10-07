@@ -33,7 +33,9 @@ const Sets = async ({content}: SetsProps) => {
               <div className="text-3xl font-bold text-white text-center">
                 {Title}
               </div>
-              <div className="text-white text-center px-24">{Description}</div>
+              <div className="text-white text-center md:px-24">
+                {Description}
+              </div>
               {card?.fields?.date ? (
                 <p className="text-gray-400 text-sm mb-2 text-center">
                   {new Date(card.fields.date).toLocaleDateString()}
