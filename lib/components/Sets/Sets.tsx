@@ -49,7 +49,7 @@ const Sets = async ({content}: SetsProps) => {
   };
   return (
     <div
-      className="relative flex flex-col justify-start items-center h-screen w-screen p-8 gap-8 bg-black"
+      className="relative flex flex-col justify-start items-center min-h-screen w-screen p-8 gap-8 bg-black"
       id="sets">
       <h1 className="text-5xl font-bold mt-16 mb-8 text-white">My DJ Sets</h1>
       {Cards()}
