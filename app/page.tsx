@@ -1,6 +1,11 @@
 import Hero from '@/lib/components/Hero';
+import Life from '@/lib/components/Life';
 import Sets from '@/lib/components/Sets';
-import client, {ContentfulDjSet, ContentfulHero} from '@/lib/contentful';
+import client, {
+  ContentfulDjLife,
+  ContentfulDjSet,
+  ContentfulHero,
+} from '@/lib/contentful';
 
 // import data from '../contentful-data.json';
 
@@ -14,11 +19,16 @@ const Home = async () => {
     el => el.sys.contentType.sys.id === 'djSet',
   ) as unknown as {fields: ContentfulDjSet | undefined}[];
 
+  const lifeContent = data.items.filter(
+    el => el.sys.contentType.sys.id === 'djLife',
+  ) as unknown as {fields: ContentfulDjLife | undefined}[];
+
   return (
     <div className="font-sans">
       <main>
         <Hero content={heroContent} />
         <Sets content={setsContent} />
+        <Life content={lifeContent} />
       </main>
     </div>
   );

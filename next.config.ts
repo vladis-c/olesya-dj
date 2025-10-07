@@ -3,9 +3,26 @@ import type {NextConfig} from 'next';
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      new URL('https://images.ctfassets.net/**'),
-      new URL('https://assets.ctfassets.net/**'),
-      new URL('https://img.youtube.com/**'),
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.ctfassets.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.instagram.com',
+        pathname: '/**',
+      },
     ],
   },
   allowedDevOrigins: ['192.168.50.28'],

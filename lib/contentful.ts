@@ -41,6 +41,11 @@ export type ContentfulDjSet = {
   videoUrl: string;
 };
 
+export type ContentfulDjLife = {
+  title: string;
+  url: string;
+};
+
 export type ContentfulMedia = {
   title: string;
   descriptions: string;
