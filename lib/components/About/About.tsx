@@ -1,40 +1,53 @@
+import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import Image from 'next/image';
-import {ContentfulAbout} from '@/lib/contentful';
+import {ContentfulAbout, ContentfulMedia} from '@/lib/contentful';
 
 type AboutProps = {
   content: {fields: ContentfulAbout | undefined} | undefined;
 };
 
 const About = async ({content}: AboutProps) => {
-  const genres = ['Progressive house', 'Techno', 'Afro'];
-  const places = ['Dubai', 'Movenpick', 'Hotels'];
+  const title = content?.fields?.title as ContentfulAbout['title'];
+  const Title = title ? documentToReactComponents(title) : null;
+
+  const description = content?.fields
+    ?.description as ContentfulAbout['description'];
+  const Description = description
+    ? documentToReactComponents(description)
+    : null;
+
+  const background = content?.fields
+    ?.background as ContentfulAbout['background'];
+
+  const image = background?.fields as ContentfulMedia;
+
   return (
     <div
-      className="relative flex flex-col justify-center items-center h-screen w-screen"
+      className="relative flex flex-col justify-center items-center w-screen min-h-screen"
       id="about">
-      <Image
-        alt="about"
-        src={`https://images.ctfassets.net/iljug6yydm15/1hX42B7XtdMn1d2rxvP3Xo/17f2c33dbec1dde0b1bc2e4545b870e1/IMG_3458.jpg`}
-        fill
-        className="object-cover -z-10"
-        id="about_background"
-      />
+      {image ? (
+        <>
+          <Image
+            alt="about"
+            src={`https:${image.file.url}`}
+            fill
+            className="object-cover -z-10"
+            id="about_background"
+          />
+          <div
+            className="absolute inset-0 bg-gray-900 opacity-95 -z-10"
+            id="about_dimmer"
+          />
+        </>
+      ) : null}
       <div
-        className="absolute inset-0 bg-gray-900 opacity-95 -z-10"
-        id="about_dimmer"
-      />
-      <div
-        className="flex flex-row flex-2 justify-between items-center px-48 gap-8"
+        className="flex flex-col md:flex-row md:flex-2 justify-between items-center px-4 md:px-48 gap-8"
         id="about_content">
-        <div className="flex flex-col flex-1 gap-8">
-          <h1 className="text-5xl font-bold text-white">About Olesya</h1>
-          <p className="pr-24 text-lg">{`
-      Ali Deger is an innovative electronic music producer and DJ who has been crafting sonic landscapes that push the boundaries of conventional electronic music for over a decade.
-Born from a passion for synthesizers and digital audio workstations, Ali's journey began in underground clubs and has evolved into a global presence across major festivals and streaming platforms.
-His unique blend of progressive house, techno, and ambient textures creates immersive experiences that transport listeners to otherworldly dimensions.
-      `}</p>
+        <div className="flex flex-col md:flex-1 gap-8" id="about_texts">
+          <div className="text-center md:text-left">{Title}</div>
+          <div className="pr-4 pl-4 md:pr-24 md:pl-0">{Description}</div>
         </div>
-        <div className="flex flex-col flex-1 gap-8">
+        <div className="flex flex-col md:flex-1 gap-8" id="about_data">
           <div
             className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
             id="about_genres">
@@ -42,7 +55,7 @@ His unique blend of progressive house, techno, and ambient textures creates imme
               Genres
             </h2>
             <ul className="flex flex-wrap gap-2 px-1">
-              {genres.map(genre => (
+              {content?.fields?.genres?.map(genre => (
                 <li
                   key={genre}
                   className="bg-gradient-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
@@ -58,7 +71,7 @@ His unique blend of progressive house, techno, and ambient textures creates imme
               Places
             </h2>
             <ul className="flex flex-col gap-2 list-disc list-inside px-2">
-              {places.map(place => (
+              {content?.fields?.places?.map(place => (
                 <li key={place} className="text-white font-medium">
                   {place}
                 </li>

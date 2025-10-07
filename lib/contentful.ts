@@ -37,8 +37,8 @@ export type ContentfulDjSet = {
   title: Document;
   description: Document;
   /** YYYY-DD-MMTHH:mm+Z */
-  date: string;
-  videoUrl: string;
+  date?: string;
+  videoUrl?: string;
 };
 
 export type ContentfulDjLife = {
@@ -49,8 +49,9 @@ export type ContentfulDjLife = {
 export type ContentfulAbout = {
   title: Document;
   description: Document;
-  genres: unknown[];
-  places: unknown[];
+  genres?: string[];
+  places?: string[];
+  background?: Entry;
 };
 
 export type ContentfulMedia = {

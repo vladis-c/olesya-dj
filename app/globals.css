@@ -26,3 +26,39 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+h1:not([class*='text-']):not([class*='font-']):not([class*='leading-']) {
+  font-size: 2.25rem !important;
+  font-weight: 700 !important;
+  line-height: 2.5rem !important;
+}
+
+h2:not([class*='text-']):not([class*='font-']):not([class*='leading-']) {
+  font-size: 1.875rem !important;
+  font-weight: 600 !important;
+  line-height: 2.25rem !important;
+}
+
+h3:not([class*='text-']):not([class*='font-']):not([class*='leading-']) {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  line-height: 2rem !important;
+}
+
+h4:not([class*='text-']):not([class*='font-']):not([class*='leading-']) {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  line-height: 1.75rem !important;
+}
+
+h5:not([class*='text-']):not([class*='font-']):not([class*='leading-']) {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  line-height: 1.75rem !important;
+}
+
+h6:not([class*='text-']):not([class*='font-']):not([class*='leading-']) {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.5rem !important;
+}
