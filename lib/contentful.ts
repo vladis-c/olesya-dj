@@ -1,11 +1,43 @@
-import {createClient} from 'contentful';
+import {Document} from '@contentful/rich-text-types';
+import {Entry, createClient} from 'contentful';
+import {ButtonType} from './components/Button/Button';
+import {IconType} from './components/Icons';
 
 const isPreview = process.env.VERCEL_ENV !== 'production';
 
-export const client = createClient({
+const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID as string,
   accessToken: isPreview
     ? (process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN as string)
     : (process.env.CONTENTFUL_ACCESS_TOKEN as string),
   host: isPreview ? 'preview.contentful.com' : 'cdn.contentful.com',
 });
+
+export default client;
+
+export type ContentfulHero = {
+  title: string;
+  description?: Document;
+  background?: Entry;
+  ctaButtons?: [
+    {
+      fields: {
+        label: Document;
+        link: string;
+        enabled: boolean;
+        showOnlyIcon: boolean;
+        icon: IconType[];
+        type: ButtonType;
+      };
+    },
+  ];
+};
+
+export type ContentfulMedia = {
+  title: string;
+  descriptions: string;
+  file: {
+    url: string;
+    details: {size: number; image: {width: number; height: number}};
+  };
+};

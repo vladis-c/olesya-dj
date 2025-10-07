@@ -1,44 +1,12 @@
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {Document} from '@contentful/rich-text-types';
-import {Entry} from 'contentful';
 import Image from 'next/image';
-import React, {ComponentProps} from 'react';
-import {client} from '@/lib/contentful';
-import data from '../../../contentful-data.json';
+import {ContentfulHero, ContentfulMedia} from '@/lib/contentful';
 import Button from '../Button';
-import Icons from '../Icons';
 
-type ContentfulHero = {
-  title: string;
-  description?: Document;
-  background?: Entry;
-  ctaButtons?: [
-    {
-      fields: {
-        label: Document;
-        link: string;
-        enabled: boolean;
-        showOnlyIcon: boolean;
-        icon: (keyof typeof Icons)[];
-        type: ComponentProps<typeof Button>['type'];
-      };
-    },
-  ];
-};
+type HeroProps = {content: {fields: ContentfulHero | undefined} | undefined};
 
-type ContentfulMedia = {
-  title: string;
-  descriptions: string;
-  file: {
-    url: string;
-    details: {size: number; image: {width: number; height: number}};
-  };
-};
-
-const Hero = async () => {
-  // const data = await client.getEntries();
-  const content = data.items.find(el => el.sys.contentType.sys.id === 'hero');
-
+const Hero = async ({content}: HeroProps) => {
   const description = content?.fields
     ?.description as ContentfulHero['description'];
 
@@ -51,7 +19,7 @@ const Hero = async () => {
 
   const image = background?.fields as ContentfulMedia;
 
-  const title = content?.fields.title as ContentfulHero['title'];
+  const title = content?.fields?.title as ContentfulHero['title'];
 
   const ctaButtons = (
     content?.fields?.ctaButtons as ContentfulHero['ctaButtons']

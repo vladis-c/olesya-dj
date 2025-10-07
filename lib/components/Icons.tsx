@@ -5,4 +5,7 @@ const Icons = {
   youtube: <Youtube />,
   instagram: <Instagram />,
 } as const;
+
+export type IconType = keyof typeof Icons;
+
 export default Icons;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import Icons from '../Icons';
 
-type ButtonType = 'gradient' | 'filled' | 'outlined' | 'link';
+export type ButtonType = 'gradient' | 'filled' | 'outlined' | 'link';
 
 type ButtonProps = {
   href: string;
