@@ -1,19 +1,20 @@
 import About from '@/lib/components/About';
+import Contacts from '@/lib/components/Contacts';
 import Hero from '@/lib/components/Hero';
 import Life from '@/lib/components/Life';
 import Sets from '@/lib/components/Sets';
 import client, {
   ContentfulAbout,
+  ContentfulContacts,
   ContentfulDjLife,
   ContentfulDjSet,
   ContentfulHero,
   ContentfulLimits,
 } from '@/lib/contentful';
-
-// import data from '../contentful-data.json';
+import data from '../contentful-data.json';
 
 const Home = async () => {
-  const data = await client.getEntries();
+  // const data = await client.getEntries();
   const heroContent = data.items.find(
     el => el.sys.contentType.sys.id === 'hero',
   ) as unknown as {fields: ContentfulHero | undefined} | undefined;
@@ -29,6 +30,10 @@ const Home = async () => {
   const aboutContent = data.items.find(
     el => el.sys.contentType.sys.id === 'about',
   ) as unknown as {fields: ContentfulAbout | undefined} | undefined;
+
+  const contactContent = data.items.find(
+    el => el.sys.contentType.sys.id === 'contacts',
+  ) as unknown as {fields: ContentfulContacts | undefined} | undefined;
 
   const limits = data.items.find(
     el => el.sys.contentType.sys.id === 'limits',
@@ -51,6 +56,7 @@ const Home = async () => {
           ).filter(el => !el.fields?.disabled)}
         />
         <About content={aboutContent} />
+        <Contacts content={contactContent} />
       </main>
     </div>
   );

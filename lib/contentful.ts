@@ -19,18 +19,7 @@ export type ContentfulHero = {
   title: string;
   description?: Document;
   background?: Entry;
-  ctaButtons?: [
-    {
-      fields: {
-        label: Document;
-        link: string;
-        enabled: boolean;
-        showOnlyIcon: boolean;
-        icon: IconType[];
-        type: ButtonType;
-      };
-    },
-  ];
+  ctaButtons?: ContentfulCTAButton[];
 };
 
 export type ContentfulDjSet = {
@@ -56,6 +45,12 @@ export type ContentfulAbout = {
   background?: Entry;
 };
 
+export type ContentfulContacts = {
+  title: string;
+  emails: string[];
+  ctaButtons?: ContentfulCTAButton[];
+};
+
 export type ContentfulLimits = {
   title: string;
   setsLimit: number;
@@ -68,5 +63,19 @@ export type ContentfulMedia = {
   file: {
     url: string;
     details: {size: number; image: {width: number; height: number}};
+  };
+};
+
+export type ContentfulCTAButton = {
+  fields: {
+    title: string;
+    label?: Document;
+    link?: string;
+    email?: string;
+    enabled: boolean;
+    showOnlyIcon: boolean;
+    icon: IconType[];
+    type: ButtonType;
+    round?: boolean;
   };
 };

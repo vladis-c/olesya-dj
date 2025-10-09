@@ -1,7 +1,11 @@
 import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {Document} from '@contentful/rich-text-types';
 import Image from 'next/image';
-import {ContentfulHero, ContentfulMedia} from '@/lib/contentful';
+import {
+  ContentfulCTAButton,
+  ContentfulHero,
+  ContentfulMedia,
+} from '@/lib/contentful';
 import Button from '../Button';
 
 type HeroProps = {content: {fields: ContentfulHero | undefined} | undefined};
@@ -22,35 +26,39 @@ const Hero = async ({content}: HeroProps) => {
   const title = content?.fields?.title as ContentfulHero['title'];
 
   const ctaButtons = (
-    content?.fields?.ctaButtons as ContentfulHero['ctaButtons']
+    content?.fields?.ctaButtons as ContentfulCTAButton[]
   )?.map(el => {
     const disabled = !el.fields?.enabled;
     const label = el.fields?.label as Document;
-    const link = el.fields?.link;
+    const link = el.fields?.link ?? '';
     const showOnlyIcon = el.fields?.showOnlyIcon;
     const icon = el.fields?.icon?.[0];
     const type = el.fields?.type;
+    const round = el.fields?.round;
 
-    return {label, link, disabled, showOnlyIcon, icon, type};
+    return {label, link, disabled, showOnlyIcon, icon, type, round};
   });
 
   const Links =
     ctaButtons && ctaButtons.length > 0
       ? ctaButtons
           .slice(1)
-          .map(({link, disabled, label, icon, showOnlyIcon, type}, i) => {
-            return (
-              <Button
-                href={link}
-                key={link + i}
-                icon={icon}
-                type={type}
-                disabled={disabled}
-                showOnlyIcon={showOnlyIcon}>
-                {documentToReactComponents(label)}
-              </Button>
-            );
-          })
+          .map(
+            ({link, disabled, label, icon, showOnlyIcon, type, round}, i) => {
+              return (
+                <Button
+                  href={link}
+                  key={link + i}
+                  icon={icon}
+                  type={type}
+                  disabled={disabled}
+                  showOnlyIcon={showOnlyIcon}
+                  round={round}>
+                  {documentToReactComponents(label)}
+                </Button>
+              );
+            },
+          )
       : null;
 
   return (
