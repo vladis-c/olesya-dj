@@ -2,6 +2,7 @@ import {Analytics} from '@vercel/analytics/next';
 import {SpeedInsights} from '@vercel/speed-insights/next';
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
+import Link from 'next/link';
 import Button from '@/lib/components/Button';
 import client, {ContentfulMedia, ContentfulMetadata} from '@/lib/contentful';
 import './globals.css';
@@ -43,7 +44,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const links = [
-  {path: '#hero', name: 'Hero'},
   {path: '#sets', name: 'Sets'},
   {path: '#life', name: 'Life'},
   {path: '#about', name: 'About me'},
@@ -68,9 +68,11 @@ const RootLayout = async ({
         <nav
           className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-sm"
           id="navigation">
-          <div className="w-full flex flex-row justify-between items-center px-4 md:px-24 py-4">
-            <h3 className="text-white">{metadataContent?.title}</h3>
-            <ul className="hidden md:flex md:gap-4 flex-wrap items-center justify-center">
+          <div className="w-full flex flex-row justify-between items-center px-4 md:px-16 py-4">
+            <Link href="#hero" className="cursor-default">
+              <h3 className="text-white">{metadataContent?.title}</h3>
+            </Link>
+            <ul className="hidden md:flex md:gap-1 flex-wrap items-center justify-center">
               {links.map(({path, name}) => (
                 <li key={path}>
                   <Button href={path} type="link">

@@ -71,7 +71,7 @@ const Contacts = async ({content}: ContactsProps) => {
       <h1 className="pb-8 text-4xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
         {title}
       </h1>
-      <div className="flex flex-row justify-between items-center gap-8">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
         {Emails}
       </div>
       <div className="flex flex-row justify-between items-center gap-8">

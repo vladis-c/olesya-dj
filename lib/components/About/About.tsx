@@ -26,7 +26,7 @@ const About = async ({content}: AboutProps) => {
 
   return (
     <div
-      className="relative flex flex-col justify-center items-center w-screen min-h-screen"
+      className="relative flex flex-col justify-center items-center w-screen lg:min-h-screen py-24 lg:py-0"
       id="about">
       {image ? (
         <>
@@ -44,13 +44,15 @@ const About = async ({content}: AboutProps) => {
         </>
       ) : null}
       <div
-        className="flex flex-col md:flex-row md:flex-2 justify-between items-center px-4 md:px-48 gap-8"
+        className="flex flex-col lg:flex-row lg:flex-2 justify-between items-center px-4 lg:px-24 xl:px-48 gap-8"
         id="about_content">
-        <div className="flex flex-col md:flex-1 gap-8" id="about_texts">
-          <div className="text-center md:text-left">{Title}</div>
-          <div className="pr-4 pl-4 md:pr-24 md:pl-0">{Description}</div>
+        <div className="flex flex-col lg:flex-1 gap-8" id="about_texts">
+          <div className="text-center lg:text-left">{Title}</div>
+          <div className="pr-4 pl-4 lg:pr-24 lg:pl-0">{Description}</div>
         </div>
-        <div className="flex flex-col md:flex-1 gap-8" id="about_data">
+        <div
+          className="flex flex-col lg:flex-1 gap-8 w-full px-4"
+          id="about_data">
           {genres && genres.length > 0 ? (
             <div
               className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
