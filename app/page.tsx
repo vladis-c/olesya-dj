@@ -11,10 +11,11 @@ import client, {
   ContentfulHero,
   ContentfulLimits,
 } from '@/lib/contentful';
-import data from '../contentful-data.json';
+
+// import data from '../contentful-data.json';
 
 const Home = async () => {
-  // const data = await client.getEntries();
+  const data = await client.getEntries();
   const heroContent = data.items.find(
     el => el.sys.contentType.sys.id === 'hero',
   ) as unknown as {fields: ContentfulHero | undefined} | undefined;
