@@ -15,6 +15,15 @@ const client = createClient({
 
 export default client;
 
+export type ContentfulMetadata = {
+  title: string;
+  description: string;
+  ogTitle: string;
+  ogDescription: string;
+  keywords: string[];
+  ogImage?: Entry;
+};
+
 export type ContentfulHero = {
   title: string;
   description?: Document;

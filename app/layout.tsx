@@ -3,6 +3,7 @@ import {SpeedInsights} from '@vercel/speed-insights/next';
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import Button from '@/lib/components/Button';
+import client, {ContentfulMedia, ContentfulMetadata} from '@/lib/contentful';
 import './globals.css';
 
 const geistSans = Geist({
@@ -15,16 +16,38 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Olesya DJ',
-  description: 'Portfolio site for DJ Olesya Cherkasheninova',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const entry = await client.getEntries({
+    content_type: 'metadata',
+    limit: 1,
+  });
+
+  const metadataFields = entry.items[0]?.fields as ContentfulMetadata;
+
+  return {
+    title: metadataFields?.title || 'DJ Olesya',
+    description: metadataFields?.description || 'DJ Olesya Cherkasheninova',
+    openGraph: {
+      title: metadataFields?.ogTitle || metadataFields?.title,
+      description: metadataFields?.ogDescription || metadataFields?.description,
+      images: metadataFields?.ogImage
+        ? [
+            {
+              url: `https:${(metadataFields.ogImage.fields as ContentfulMedia).file.url}`,
+            },
+          ]
+        : [],
+    },
+    keywords: (metadataFields?.keywords as string[]) || [],
+  };
+}
 
 const links = [
   {path: '#hero', name: 'Hero'},
   {path: '#sets', name: 'Sets'},
   {path: '#life', name: 'Life'},
   {path: '#about', name: 'About me'},
+  {path: '#contacts', name: 'Contacts'},
 ];
 
 const RootLayout = ({
@@ -58,7 +81,7 @@ const RootLayout = ({
         <footer
           className="flex gap-[24px] flex-wrap items-center justify-center p-8"
           id="footer">
-          Here is footer
+          {`© 2025 Olesya Cherkasheninova. All rights reserved.`}
         </footer>
       </body>
     </html>
