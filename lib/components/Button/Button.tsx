@@ -29,7 +29,7 @@ const Button = ({
   showOnlyIcon = false,
   round = false,
 }: ButtonProps) => {
-  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(href);
+  const isContact = /^([^\s@]+@[^\s@]+\.[^\s@]+|\+?[1-9]\d{1,14})$/.test(href);
 
   const baseClasses = clsx(
     'inline-flex items-center justify-center gap-2 px-6 py-3 font-medium',
@@ -63,7 +63,7 @@ const Button = ({
         <div className="flex flex-col justify-center items-center gap-2">
           {Icon()}
           {children}
-          {isEmail && href}
+          {isContact && href}
         </div>
       );
     } else {
@@ -80,7 +80,8 @@ const Button = ({
     return <span className={baseClasses}>{ButtonContent()}</span>;
   }
 
-  if (isEmail) {
+  if (isContact) {
+    console.log(href);
     return (
       <ButtonCS className={baseClasses} href={href}>
         {ButtonContent()}

@@ -30,7 +30,7 @@ const Hero = async ({content}: HeroProps) => {
   )?.map(el => {
     const disabled = !el.fields?.enabled;
     const label = el.fields?.label as Document;
-    const link = el.fields?.link ?? '';
+    const link = el.fields?.link ?? el.fields?.email ?? el.fields?.phone ?? '';
     const showOnlyIcon = el.fields?.showOnlyIcon;
     const icon = el.fields?.icon?.[0];
     const type = el.fields?.type;

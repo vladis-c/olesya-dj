@@ -82,6 +82,7 @@ export type ContentfulCTAButton = {
     label?: Document;
     link?: string;
     email?: string;
+    phone?: string;
     enabled: boolean;
     showOnlyIcon: boolean;
     icon: IconType[];
