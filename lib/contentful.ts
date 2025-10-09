@@ -39,11 +39,13 @@ export type ContentfulDjSet = {
   /** YYYY-DD-MMTHH:mm+Z */
   date?: string;
   videoUrl?: string;
+  disabled: boolean;
 };
 
 export type ContentfulDjLife = {
   title: string;
   url: string;
+  disabled: boolean;
 };
 
 export type ContentfulAbout = {
@@ -52,6 +54,12 @@ export type ContentfulAbout = {
   genres?: string[];
   places?: string[];
   background?: Entry;
+};
+
+export type ContentfulLimits = {
+  title: string;
+  setsLimit: number;
+  lifeLimit: number;
 };
 
 export type ContentfulMedia = {

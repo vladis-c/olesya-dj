@@ -7,6 +7,7 @@ import client, {
   ContentfulDjLife,
   ContentfulDjSet,
   ContentfulHero,
+  ContentfulLimits,
 } from '@/lib/contentful';
 
 // import data from '../contentful-data.json';
@@ -29,12 +30,26 @@ const Home = async () => {
     el => el.sys.contentType.sys.id === 'about',
   ) as unknown as {fields: ContentfulAbout | undefined} | undefined;
 
+  const limits = data.items.find(
+    el => el.sys.contentType.sys.id === 'limits',
+  ) as unknown as {fields: ContentfulLimits | undefined} | undefined;
+
   return (
     <div className="font-sans">
       <main>
         <Hero content={heroContent} />
-        <Sets content={setsContent} />
-        <Life content={lifeContent} />
+        <Sets
+          content={(limits?.fields?.setsLimit
+            ? setsContent.slice(0, limits?.fields?.setsLimit)
+            : setsContent
+          ).filter(el => !el.fields?.disabled)}
+        />
+        <Life
+          content={(limits?.fields?.lifeLimit
+            ? lifeContent.slice(0, limits?.fields?.lifeLimit)
+            : lifeContent
+          ).filter(el => !el.fields?.disabled)}
+        />
         <About content={aboutContent} />
       </main>
     </div>
