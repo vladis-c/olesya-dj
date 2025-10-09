@@ -22,6 +22,7 @@ export type ContentfulMetadata = {
   ogDescription: string;
   keywords: string[];
   ogImage?: Entry;
+  name: string;
 };
 
 export type ContentfulHero = {

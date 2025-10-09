@@ -17,28 +17,28 @@ const geistMono = Geist_Mono({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const entry = await client.getEntries({
+  const metadataEntry = await client.getEntries({
     content_type: 'metadata',
     limit: 1,
   });
-
-  const metadataFields = entry.items[0]?.fields as ContentfulMetadata;
+  const metadataContent = metadataEntry.items[0]?.fields as ContentfulMetadata;
 
   return {
-    title: metadataFields?.title || 'DJ Olesya',
-    description: metadataFields?.description || 'DJ Olesya Cherkasheninova',
+    title: metadataContent?.title || 'DJ Olesya',
+    description: metadataContent?.description || 'DJ Olesya Cherkasheninova',
     openGraph: {
-      title: metadataFields?.ogTitle || metadataFields?.title,
-      description: metadataFields?.ogDescription || metadataFields?.description,
-      images: metadataFields?.ogImage
+      title: metadataContent?.ogTitle || metadataContent?.title,
+      description:
+        metadataContent?.ogDescription || metadataContent?.description,
+      images: metadataContent?.ogImage
         ? [
             {
-              url: `https:${(metadataFields.ogImage.fields as ContentfulMedia).file.url}`,
+              url: `https:${(metadataContent.ogImage.fields as ContentfulMedia).file.url}`,
             },
           ]
         : [],
     },
-    keywords: (metadataFields?.keywords as string[]) || [],
+    keywords: (metadataContent?.keywords as string[]) || [],
   };
 }
 
@@ -50,11 +50,17 @@ const links = [
   {path: '#contacts', name: 'Contacts'},
 ];
 
-const RootLayout = ({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const metadataEntry = await client.getEntries({
+    content_type: 'metadata',
+    limit: 1,
+  });
+  const metadataContent = metadataEntry.items[0]?.fields as ContentfulMetadata;
+
   return (
     <html lang="en">
       <body
@@ -81,7 +87,7 @@ const RootLayout = ({
         <footer
           className="flex gap-[24px] flex-wrap items-center justify-center p-8"
           id="footer">
-          {`© 2025 Olesya Cherkasheninova. All rights reserved.`}
+          {`© ${new Date().getFullYear()} ${metadataContent.name}. All rights reserved.`}
         </footer>
       </body>
     </html>
