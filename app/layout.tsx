@@ -4,6 +4,7 @@ import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import Link from 'next/link';
 import Button from '@/lib/components/Button';
+import AnimatedLayoutTitle from '@/lib/components/Layout/AnimatedLayoutTitle';
 import client, {ContentfulMedia, ContentfulMetadata} from '@/lib/contentful';
 import './globals.css';
 
@@ -70,7 +71,11 @@ const RootLayout = async ({
           id="navigation">
           <div className="w-full flex flex-row justify-between items-center px-4 md:px-16 py-4">
             <Link href="#hero" className="cursor-default">
-              <h3 className="text-white">{metadataContent?.title}</h3>
+              <AnimatedLayoutTitle>
+                <h3 className="bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+                  {metadataContent?.title}
+                </h3>
+              </AnimatedLayoutTitle>
             </Link>
             <ul className="hidden md:flex md:gap-1 flex-wrap items-center justify-center">
               {links.map(({path, name}) => (

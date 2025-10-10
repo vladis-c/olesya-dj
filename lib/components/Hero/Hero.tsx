@@ -7,6 +7,7 @@ import {
   ContentfulMedia,
 } from '@/lib/contentful';
 import Button from '../Button';
+import AnimatedHeroTitle from './AnimatedHeroTitle';
 
 type HeroProps = {content: {fields: ContentfulHero | undefined} | undefined};
 
@@ -76,9 +77,11 @@ const Hero = async ({content}: HeroProps) => {
         className="absolute inset-0 bg-black opacity-50 -z-10"
         id="hero_dimmer"
       />
-      <h1 className="text-6xl md:text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
-        {title}
-      </h1>
+      <AnimatedHeroTitle>
+        <h1 className="text-6xl md:text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+          {title}
+        </h1>
+      </AnimatedHeroTitle>
       <div className="text-white text-center">{Description}</div>
       {ctaButtons && ctaButtons.length > 0 ? (
         <div className="flex flex-col gap-4">
