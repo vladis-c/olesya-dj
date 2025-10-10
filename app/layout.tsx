@@ -2,8 +2,8 @@ import {Analytics} from '@vercel/analytics/next';
 import {SpeedInsights} from '@vercel/speed-insights/next';
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
-import Link from 'next/link';
 import Button from '@/lib/components/Button';
+import SmoothScrollLink from '@/lib/components/Button/SmoothScrollLink';
 import AnimatedLayoutTitle from '@/lib/components/Layout/AnimatedLayoutTitle';
 import client, {ContentfulMedia, ContentfulMetadata} from '@/lib/contentful';
 import './globals.css';
@@ -70,17 +70,17 @@ const RootLayout = async ({
           className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-sm"
           id="navigation">
           <div className="w-full flex flex-row justify-between items-center px-4 md:px-16 py-4">
-            <Link href="#hero" className="cursor-default">
-              <AnimatedLayoutTitle>
+            <AnimatedLayoutTitle>
+              <SmoothScrollLink href="#hero">
                 <h3 className="bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
                   {metadataContent?.title}
                 </h3>
-              </AnimatedLayoutTitle>
-            </Link>
+              </SmoothScrollLink>
+            </AnimatedLayoutTitle>
             <ul className="hidden md:flex md:gap-1 flex-wrap items-center justify-center">
               {links.map(({path, name}) => (
                 <li key={path}>
-                  <Button href={path} type="link">
+                  <Button href={path} type="link" smoothScroll={true}>
                     {name}
                   </Button>
                 </li>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import Icons from '../Icons';
 import ButtonCS from './ButtonCS';
+import SmoothScrollLink from './SmoothScrollLink';
 
 export type ButtonType = 'gradient' | 'filled' | 'outlined' | 'link' | 'box';
 
@@ -17,6 +18,7 @@ type ButtonProps = {
   disabled?: boolean;
   showOnlyIcon?: boolean;
   round?: boolean;
+  smoothScroll?: boolean;
 };
 
 const Button = ({
@@ -28,6 +30,7 @@ const Button = ({
   disabled = false,
   showOnlyIcon = false,
   round = false,
+  smoothScroll = false,
 }: ButtonProps) => {
   const isContact = /^([^\s@]+@[^\s@]+\.[^\s@]+|\+?[1-9]\d{1,14})$/.test(href);
 
@@ -81,11 +84,18 @@ const Button = ({
   }
 
   if (isContact) {
-    console.log(href);
     return (
       <ButtonCS className={baseClasses} href={href}>
         {ButtonContent()}
       </ButtonCS>
+    );
+  }
+
+  if (smoothScroll) {
+    return (
+      <SmoothScrollLink href={href} className={baseClasses}>
+        {ButtonContent()}
+      </SmoothScrollLink>
     );
   }
 
