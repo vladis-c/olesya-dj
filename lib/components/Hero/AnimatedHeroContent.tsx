@@ -21,7 +21,14 @@ const AnimatedHeroContent = ({children}: AnimatedHeroContentProps) => {
   const opacity = useTransform(scrollY, [0, heroHeight * 0.7], [1, 0]);
   const y = useTransform(scrollY, [0, heroHeight * 0.6], [0, -100]);
 
-  return <motion.div style={{opacity, y}}>{children}</motion.div>;
+  return (
+    <motion.div
+      initial={{y: 50, opacity: 0}}
+      animate={{y: 0, opacity: 1}}
+      transition={{duration: 1, delay: 0.5}}>
+      <motion.div style={{opacity, y}}>{children}</motion.div>
+    </motion.div>
+  );
 };
 
 export default AnimatedHeroContent;

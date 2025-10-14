@@ -24,7 +24,12 @@ const AnimatedHeroTitle = ({children}: AnimatedHeroTitleProps) => {
   const scaleX = useTransform(scrollY, [0, heroHeight * 0.5], [1, 0.5]);
 
   return (
-    <motion.div style={{opacity, y, scaleY, scaleX}}>{children}</motion.div>
+    <motion.div
+      initial={{y: 100, opacity: 0}}
+      animate={{y: 0, opacity: 1}}
+      transition={{duration: 1, delay: 0.2}}>
+      <motion.div style={{opacity, y, scaleY, scaleX}}>{children}</motion.div>
+    </motion.div>
   );
 };
 
