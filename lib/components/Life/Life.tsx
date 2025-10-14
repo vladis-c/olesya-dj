@@ -1,4 +1,5 @@
 import {ContentfulDjLife} from '@/lib/contentful';
+import AnimatedLifeGrid from './AnimatedLifeGrid';
 import LifeCard from './LifeCard';
 
 type LifeProps = {
@@ -16,9 +17,7 @@ const Life = async ({content}: LifeProps) => {
       className="relative flex flex-col justify-start items-center min-h-screen w-screen p-8 gap-8 bg-black pb-24"
       id="life">
       <h1 className="text-5xl font-bold mt-16 mb-8 text-white">My DJ Life</h1>
-      <div className="flex flex-wrap w-screen justify-center items-center gap-8 md:px-48">
-        {Cards()}
-      </div>
+      <AnimatedLifeGrid>{Cards()}</AnimatedLifeGrid>
     </div>
   );
 };
