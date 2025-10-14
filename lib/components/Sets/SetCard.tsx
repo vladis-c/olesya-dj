@@ -2,9 +2,9 @@ import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {ContentfulDjSet} from '@/lib/contentful';
 import Video from '../Video';
 
-type SetCard = {card: {fields: ContentfulDjSet | undefined}; index: number};
+type SetCardType = {card: {fields: ContentfulDjSet | undefined}; index: number};
 
-const SetCard = ({card, index}: SetCard) => {
+const SetCard = ({card, index}: SetCardType) => {
   if (!card.fields?.videoUrl) {
     return null;
   }
