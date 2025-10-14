@@ -3,12 +3,12 @@
 import {motion, useInView} from 'motion/react';
 import {useRef} from 'react';
 
-type AnimatedSetCard = {
+type AnimatedSetCardType = {
   children: React.ReactNode;
   index: number;
 };
 
-const AnimatedSetCard = ({children}: AnimatedSetCard) => {
+const AnimatedSetCard = ({children}: AnimatedSetCardType) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {margin: '80px 0px 80px 0px'});
 
