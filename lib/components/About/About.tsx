@@ -2,6 +2,8 @@ import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import Image from 'next/image';
 import {ContentfulAbout, ContentfulMedia} from '@/lib/contentful';
 import AnimatedAboutContainer from './AnimatedAboutContainer';
+import AnimatedGenres from './AnimatedGenres';
+import AnimatedPlaces from './AnimatedPlaces';
 
 type AboutProps = {
   content: {fields: ContentfulAbout | undefined} | undefined;
@@ -58,38 +60,42 @@ const About = async ({content}: AboutProps) => {
             className="flex flex-col lg:flex-1 gap-8 w-full px-4"
             id="about_data">
             {genres && genres.length > 0 ? (
-              <div
-                className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
-                id="about_genres">
-                <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
-                  Genres
-                </h2>
-                <ul className="flex flex-wrap gap-2 px-1">
-                  {genres.map(genre => (
-                    <li
-                      key={genre}
-                      className="bg-gradient-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
-                      <p className="text-white font-medium">{genre}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <AnimatedGenres>
+                <div
+                  className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
+                  id="about_genres">
+                  <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
+                    Genres
+                  </h2>
+                  <ul className="flex flex-wrap gap-2 px-1">
+                    {genres.map(genre => (
+                      <li
+                        key={genre}
+                        className="bg-gradient-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
+                        <p className="text-white font-medium">{genre}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedGenres>
             ) : null}
             {places && places.length > 0 ? (
-              <div
-                className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
-                id="about_places">
-                <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
-                  Places
-                </h2>
-                <ul className="flex flex-col gap-2 list-disc list-inside px-2">
-                  {places.map(place => (
-                    <li key={place} className="text-white font-medium">
-                      {place}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <AnimatedPlaces>
+                <div
+                  className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
+                  id="about_places">
+                  <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+                    Places
+                  </h2>
+                  <ul className="flex flex-col gap-2 list-disc list-inside px-2">
+                    {places.map(place => (
+                      <li key={place} className="text-white font-medium">
+                        {place}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedPlaces>
             ) : null}
           </div>
         </AnimatedAboutContainer>
