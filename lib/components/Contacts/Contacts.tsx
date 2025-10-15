@@ -2,6 +2,8 @@ import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 import {Document} from '@contentful/rich-text-types';
 import {ContentfulCTAButton, ContentfulContacts} from '@/lib/contentful';
 import Button from '../Button';
+import AnimatedContactsContent from './AnimatedContactsContent';
+import AnimatedContactsTitle from './AnimatedContactsTitle';
 
 type ContactsProps = {
   content: {fields: ContentfulContacts | undefined} | undefined;
@@ -68,15 +70,21 @@ const Contacts = async ({content}: ContactsProps) => {
     <div
       className="relative flex flex-col justify-center items-center w-screen py-24 gap-8"
       id="contacts">
-      <h1 className="pb-8 text-4xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
-        {Emails}
-      </div>
-      <div className="flex flex-row justify-between items-center gap-8">
-        {Links}
-      </div>
+      <AnimatedContactsTitle>
+        <h1 className="pb-8 text-4xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
+          {title}
+        </h1>
+      </AnimatedContactsTitle>
+      <AnimatedContactsContent>
+        <div className="flex flex-col items-center justify-center gap-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
+            {Emails}
+          </div>
+          <div className="flex flex-row justify-between items-center gap-4">
+            {Links}
+          </div>
+        </div>
+      </AnimatedContactsContent>
     </div>
   );
 };

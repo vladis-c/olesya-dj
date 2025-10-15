@@ -7,6 +7,8 @@ import {
   ContentfulMedia,
 } from '@/lib/contentful';
 import Button from '../Button';
+import AnimatedHeroContent from './AnimatedHeroContent';
+import AnimatedHeroTitle from './AnimatedHeroTitle';
 
 type HeroProps = {content: {fields: ContentfulHero | undefined} | undefined};
 
@@ -76,26 +78,33 @@ const Hero = async ({content}: HeroProps) => {
         className="absolute inset-0 bg-black opacity-50 -z-10"
         id="hero_dimmer"
       />
-      <h1 className="text-6xl md:text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
-        {title}
-      </h1>
-      <div className="text-white text-center">{Description}</div>
-      {ctaButtons && ctaButtons.length > 0 ? (
-        <div className="flex flex-col gap-4">
-          <Button
-            href={ctaButtons[0]?.link}
-            key={ctaButtons[0]?.link}
-            icon={ctaButtons[0]?.icon}
-            type={ctaButtons[0]?.type}
-            disabled={ctaButtons[0]?.disabled}
-            showOnlyIcon={ctaButtons[0]?.showOnlyIcon}>
-            {documentToReactComponents(ctaButtons[0].label)}
-          </Button>
-          <div className="flex flex-row items-center justify-center gap-4">
-            {Links}
-          </div>
+      <AnimatedHeroTitle>
+        <h1 className="text-6xl md:text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+          {title}
+        </h1>
+      </AnimatedHeroTitle>
+      <AnimatedHeroContent>
+        <div className="flex flex-col gap-4 items-center">
+          <div className="text-white text-center">{Description}</div>
+          {ctaButtons && ctaButtons.length > 0 ? (
+            <>
+              <Button
+                className="w-1/2"
+                href={ctaButtons[0]?.link}
+                key={ctaButtons[0]?.link}
+                icon={ctaButtons[0]?.icon}
+                type={ctaButtons[0]?.type}
+                disabled={ctaButtons[0]?.disabled}
+                showOnlyIcon={ctaButtons[0]?.showOnlyIcon}>
+                {documentToReactComponents(ctaButtons[0].label)}
+              </Button>
+              <div className="flex flex-row items-center justify-center gap-4">
+                {Links}
+              </div>
+            </>
+          ) : null}
         </div>
-      ) : null}
+      </AnimatedHeroContent>
     </div>
   );
 };
