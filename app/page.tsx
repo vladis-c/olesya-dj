@@ -40,22 +40,24 @@ const Home = async () => {
     el => el.sys.contentType.sys.id === 'limits',
   ) as unknown as {fields: ContentfulLimits | undefined} | undefined;
 
+  const sets = (
+    limits?.fields?.setsLimit
+      ? setsContent.slice(0, limits?.fields?.setsLimit)
+      : setsContent
+  ).filter(el => !el.fields?.disabled);
+
+  const life = (
+    limits?.fields?.lifeLimit
+      ? lifeContent.slice(0, limits?.fields?.lifeLimit)
+      : lifeContent
+  ).filter(el => !el.fields?.disabled);
+
   return (
     <div className="font-sans">
       <main>
         <Hero content={heroContent} />
-        <Sets
-          content={(limits?.fields?.setsLimit
-            ? setsContent.slice(0, limits?.fields?.setsLimit)
-            : setsContent
-          ).filter(el => !el.fields?.disabled)}
-        />
-        <Life
-          content={(limits?.fields?.lifeLimit
-            ? lifeContent.slice(0, limits?.fields?.lifeLimit)
-            : lifeContent
-          ).filter(el => !el.fields?.disabled)}
-        />
+        {sets.length > 0 ? <Sets content={sets} /> : null}
+        {life.length > 0 ? <Life content={life} /> : null}
         <About content={aboutContent} />
         <Contacts content={contactContent} />
       </main>

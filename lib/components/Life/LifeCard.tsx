@@ -15,9 +15,11 @@ const LifeCard = ({card, index}: LifeCardType) => {
   return (
     <AnimatedLifeCard card={card} index={index}>
       <InstagramReel src={card.fields.url} />
-      <p className="absolute bottom-8 left-1/2 transform -translate-x-1/2 font-bold text-white text-center bg-black/50 px-2 py-1 rounded-md">
-        {card?.fields?.title}
-      </p>
+      {card?.fields?.title ? (
+        <p className="absolute bottom-8 left-1/2 transform -translate-x-1/2 font-bold text-white text-center bg-black/50 px-2 py-1 rounded-md">
+          {card?.fields?.title}
+        </p>
+      ) : null}
     </AnimatedLifeCard>
   );
 };
