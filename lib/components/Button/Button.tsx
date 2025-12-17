@@ -80,7 +80,7 @@ const Button = ({
   };
 
   if (disabled) {
-    return <span className={baseClasses}>{ButtonContent()}</span>;
+    return null;
   }
 
   if (isContact) {
