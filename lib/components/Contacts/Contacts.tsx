@@ -71,7 +71,7 @@ const Contacts = async ({content}: ContactsProps) => {
       className="relative flex flex-col justify-center items-center w-screen py-24 gap-8"
       id="contacts">
       <AnimatedContactsTitle>
-        <h1 className="pb-8 text-4xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
+        <h1 className="pb-8 text-4xl font-semibold bg-linear-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
           {title}
         </h1>
       </AnimatedContactsTitle>

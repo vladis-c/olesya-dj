@@ -79,7 +79,7 @@ const Hero = async ({content}: HeroProps) => {
         id="hero_dimmer"
       />
       <AnimatedHeroTitle>
-        <h1 className="text-6xl md:text-9xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+        <h1 className="text-6xl md:text-9xl font-semibold bg-linear-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
           {title}
         </h1>
       </AnimatedHeroTitle>

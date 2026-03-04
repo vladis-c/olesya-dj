@@ -64,14 +64,14 @@ const About = async ({content}: AboutProps) => {
                 <div
                   className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
                   id="about_genres">
-                  <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
+                  <h2 className="text-xl font-semibold bg-linear-to-r from-gradient-purple to-gradient-blue bg-clip-text text-transparent">
                     Genres
                   </h2>
                   <ul className="flex flex-wrap gap-2 px-1">
                     {genres.map(genre => (
                       <li
                         key={genre}
-                        className="bg-gradient-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
+                        className="bg-linear-to-r from-gradient-blue/30 to-gradient-purple/30 backdrop-blur-sm px-4 py-2 w-fit rounded-xl">
                         <p className="text-white font-medium">{genre}</p>
                       </li>
                     ))}
@@ -84,7 +84,7 @@ const About = async ({content}: AboutProps) => {
                 <div
                   className="flex flex-col gap-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl"
                   id="about_places">
-                  <h2 className="text-xl font-semibold bg-gradient-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
+                  <h2 className="text-xl font-semibold bg-linear-to-r from-gradient-blue to-gradient-purple bg-clip-text text-transparent">
                     Places
                   </h2>
                   <ul className="flex flex-col gap-2 list-disc list-inside px-2">
