@@ -12,6 +12,8 @@ import client, {
   ContentfulLimits,
 } from '@/lib/contentful';
 
+export const revalidate = 60;
+
 // import data from '../contentful-data.json';
 
 const Home = async () => {
